@@ -137,6 +137,7 @@
     <button class="nav-btn" onclick="showSection('about')">О себе</button>
     <button class="nav-btn" onclick="showSection('gallery')">Галерея</button>
     <button class="nav-btn" onclick="showSection('music')">Музыка</button>
+    
   </aside>
 
   <main class="content">
@@ -155,6 +156,15 @@
         Я не забиваю себе голову проблемами вроде побед или поражений, и не обзавожусь врагами, из-за которых не мог бы уснуть. 
         Я знаю наверняка: в таком способе взаимодействия с обществом и кроется счастье. Хотя, если бы мне пришлось сражаться, я бы никому не проиграл.
         </p>
+        <br>
+        <p style="text-indent:30px; margin-top:10px;">
+          Ну а вообще почему бы не сделать сайт со всем что я хочу на те вам кубик:
+          <button class="nav-btn" onclick="openProject('cube')">Кубэг</button>
+        </p>
+         <p style="text-indent:30px; margin-top:10px;">
+          Ну всё короче гои хватит вам и так много чё сделал, а то иш чо захотели <br>
+          <img src="images.jpeg" onclick="openLightbox(this.src)">
+         </p>
       </p>
     </section>
 
@@ -230,6 +240,9 @@
       lightbox.style.display = 'flex';
     }
 
+    function openProject() {
+      window.location.href = "Cube.html";
+    }
 
     function closeLightbox() {
       const lightbox = document.getElementById('lightbox');
