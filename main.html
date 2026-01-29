@@ -134,21 +134,46 @@
     <section id="music">
       <h2>Музыка</h2>
       <p style="margin-top:10px;">Мои любимые треки:</p>
-      <audio controls>
-        <source src="METAMORPHOSISmp3" type="audio/mpeg" />
+
+      <p style="margin-top:10px;">Interworld METAMORPHOSIS</p>
+      <audio class="music-player" controls>
+        <source src="METAMORPHOSIS.mp3" type="audio/mpeg">
         Твой браузер не поддерживает аудио.
       </audio>
+
+      <p style="margin-top:10px;">DVRST Close Eyes</p>
+      <audio class="music-player" controls>
+        <source src="Close Eyes.mp3" type="audio/mpeg">
+        Твой браузер не поддерживает аудио.
+      </audio>
+
+
     </section>
   </main>
 
   <script>
-    function showSection(id) {
+      function showSection(id) {
       document.querySelectorAll('section').forEach(sec => {
-        sec.classList.remove('active');
-      });
+      sec.classList.remove('active');
+          });
       document.getElementById(id).classList.add('active');
-    }
-  </script>
+        }
+
+
+        const players = document.querySelectorAll('.music-player');
+
+
+          players.forEach(player => {
+          player.addEventListener('play', () => {
+          players.forEach(other => {
+          if (other !== player) {
+          other.pause();
+          other.currentTime = 0;
+          }
+          });
+          });
+          });
+          </script>
 
 </body>
 </html>
