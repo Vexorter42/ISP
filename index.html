@@ -48,6 +48,37 @@
       background: #1e293b;
     }
 
+    .fullpage-center {
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+    }
+
+    .download-box {
+      text-align: center;
+      padding: 40px;
+      background: #020617;
+      border-radius: 16px;
+      box-shadow: 0 0 40px rgba(0,0,0,0.4);
+    }
+
+    .download-btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 15px 30px;
+      background: #2563eb;
+      color: white;
+      font-size: 18px;
+      border-radius: 12px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .download-btn:hover {
+      background: #1d4ed8;
+      transform: scale(1.05);
+    }
+
     .content {
       flex: 1;
       padding: 30px;
@@ -92,6 +123,16 @@
       transition: transform 0.2s;
     }
 
+    .corner-text {
+      position: absolute;
+      right: 15px;
+      bottom: 10px;
+      font-size: 11px;
+      color: #64748b;
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
     .gallery img:hover {
       transform: scale(1.05);
     }
@@ -128,6 +169,10 @@
       margin-top: 15px;
       width: 100%;
     }
+
+    #download {
+      position: relative;
+    }
   </style>
 </head>
 <body>
@@ -137,7 +182,9 @@
     <button class="nav-btn" onclick="showSection('about')">О себе</button>
     <button class="nav-btn" onclick="showSection('gallery')">Галерея</button>
     <button class="nav-btn" onclick="showSection('music')">Музыка</button>
-    
+    <button class="nav-btn" onclick="showSection('download')">Скачать шейдеры</button>
+
+
   </aside>
 
   <main class="content">
@@ -196,6 +243,23 @@
         <source src="ECLIPSER.mp3">
       </audio>
     </section>
+
+    <section id="download" class="fullpage-center">
+      <div class="download-box">
+        <h2>Шейдеры</h2>
+        <p>ZIP архив с файлами шейдера* Complimentary Unbound</p>
+
+        <a href="project.zip" download class="download-btn">
+          📦 Скачать ZIP
+        </a>
+      </div>
+
+      <span class="corner-text">
+        * шейдер для майнкрафт
+      </span>
+    </section>
+
+
   </main>
 
   <!-- Lightbox -->
