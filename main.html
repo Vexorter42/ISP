@@ -83,7 +83,20 @@
       transition: transform 0.2s;
     }
 
+    .gallery video {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
     .gallery img:hover {
+      transform: scale(1.05);
+    }
+
+    .gallery video:hover {
       transform: scale(1.05);
     }
 
@@ -103,6 +116,13 @@
       max-height: 90%;
       border-radius: 12px;
     }
+
+    .lightbox video {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 12px;
+    }
+
 
     audio {
       margin-top: 15px;
@@ -124,7 +144,8 @@
       <h2>О себе</h2>
       <p style="margin-top:10px;">
         И так обо мне: <br>
-        Меня зовут Кира Йошикаге. 
+        <p style="text-indent:30px; margin-top:10px;">
+          Меня зовут Кира Йошикаге. 
         Мне 33 года. Мой дом находится в северо-восточной части Морио, в районе поместий. 
         Работаю в офисе сети магазинов Kame Yu и домой возвращаюсь, самое позднее, в восемь вечера. 
         Не курю, выпиваю изредка. Ложусь спать в 11 вечера и убеждаюсь, что получаю ровно восемь часов сна, несмотря ни на что. 
@@ -133,6 +154,7 @@
         Я пытаюсь донести, что я обычный человек, который хочет жить спокойной жизнью. 
         Я не забиваю себе голову проблемами вроде побед или поражений, и не обзавожусь врагами, из-за которых не мог бы уснуть. 
         Я знаю наверняка: в таком способе взаимодействия с обществом и кроется счастье. Хотя, если бы мне пришлось сражаться, я бы никому не проиграл.
+        </p>
       </p>
     </section>
 
@@ -141,7 +163,7 @@
       <div class="gallery">
         <img src="ENDFIELD.png" onclick="openLightbox(this.src)">
         <img src="Bob.jpg" onclick="openLightbox(this.src)">
-        <img src="photo3.jpg" onclick="openLightbox(this.src)">
+        <video src="jojo.mp4" onclick="openLightbox(this.src)">
         <img src="photo4.jpg" onclick="openLightbox(this.src)">
       </div>
     </section>
@@ -165,8 +187,10 @@
 
   <!-- Lightbox -->
   <div class="lightbox" id="lightbox" onclick="closeLightbox()">
-    <img id="lightbox-img">
-  </div>
+      <img id="lightbox-img">
+      <video id="lightbox-video" controls></video>
+    </div>
+
 
   <script>
     function showSection(id) {
@@ -187,13 +211,35 @@
     });
 
     function openLightbox(src) {
-      document.getElementById('lightbox-img').src = src;
-      document.getElementById('lightbox').style.display = 'flex';
+      const lightbox = document.getElementById('lightbox');
+      const img = document.getElementById('lightbox-img');
+      const video = document.getElementById('lightbox-video');
+
+      img.style.display = 'none';
+      video.style.display = 'none';
+
+      if (src.endsWith('.mp4') || src.endsWith('.webm') || src.endsWith('.ogg')) {
+        video.src = src;
+        video.style.display = 'block';
+        video.play();
+      } else {
+        img.src = src;
+        img.style.display = 'block';
+      }
+
+      lightbox.style.display = 'flex';
     }
 
+
     function closeLightbox() {
-      document.getElementById('lightbox').style.display = 'none';
+      const lightbox = document.getElementById('lightbox');
+      const video = document.getElementById('lightbox-video');
+
+      video.pause();
+      video.src = '';
+      lightbox.style.display = 'none';
     }
+
   </script>
 
 </body>
