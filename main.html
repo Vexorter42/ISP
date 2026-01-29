@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Мой сайт</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      display: flex;
+      min-height: 100vh;
+      background: #0f172a;
+      color: #e5e7eb;
+    }
+
+    /* Левая панель */
+    .sidebar {
+      width: 220px;
+      background: #020617;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .sidebar h1 {
+      font-size: 20px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .nav-btn {
+      background: none;
+      border: none;
+      color: #e5e7eb;
+      text-align: left;
+      padding: 10px;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: background 0.2s;
+    }
+
+    .nav-btn:hover {
+      background: #1e293b;
+    }
+
+    /* Основной контент */
+    .content {
+      flex: 1;
+      padding: 30px;
+    }
+
+    section {
+      display: none;
+      animation: fade 0.3s ease-in-out;
+    }
+
+    section.active {
+      display: block;
+    }
+
+    @keyframes fade {
+      from { opacity: 0; transform: translateY(5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Галерея */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 15px;
+      margin-top: 15px;
+    }
+
+    .gallery div {
+      background: #1e293b;
+      height: 120px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #94a3b8;
+    }
+
+    /* Музыка */
+    audio {
+      margin-top: 15px;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+  <aside class="sidebar">
+    <h1>Vexorter</h1>
+    <button class="nav-btn" onclick="showSection('about')">О себе</button>
+    <button class="nav-btn" onclick="showSection('gallery')">Галерея</button>
+    <button class="nav-btn" onclick="showSection('music')">Музыка</button>
+  </aside>
+
+  <main class="content">
+    <section id="about" class="active">
+      <h2>О себе</h2>
+      <p style="margin-top:10px;">
+        Привет! Это мой личный сайт. Здесь ты можешь узнать обо мне,
+        посмотреть мои работы и послушать музыку.
+      </p>
+    </section>
+
+    <section id="gallery">
+      <h2>Галерея</h2>
+      <div class="gallery">
+        <div>Фото 1</div>
+        <div>Фото 2</div>
+        <div>Фото 3</div>
+        <div>Фото 4</div>
+      </div>
+    </section>
+
+    <section id="music">
+      <h2>Музыка</h2>
+      <p style="margin-top:10px;">Мои любимые треки:</p>
+      <audio controls>
+        <source src="music.mp3" type="audio/mpeg" />
+        Твой браузер не поддерживает аудио.
+      </audio>
+    </section>
+  </main>
+
+  <script>
+    function showSection(id) {
+      document.querySelectorAll('section').forEach(sec => {
+        sec.classList.remove('active');
+      });
+      document.getElementById(id).classList.add('active');
+    }
+  </script>
+
+</body>
+</html>
