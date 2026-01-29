@@ -173,6 +173,48 @@
     #download {
       position: relative;
     }
+    
+    /* ====== MOBILE ====== */
+      @media (max-width: 768px) {
+
+        body {
+          flex-direction: column;
+        }
+
+        .sidebar {
+          width: 100%;
+          flex-direction: row;
+          justify-content: space-around;
+          padding: 10px;
+        }
+
+        .sidebar h1 {
+          display: none;
+        }
+
+        .nav-btn {
+          font-size: 14px;
+          padding: 10px;
+        }
+
+        .content {
+          padding: 15px;
+        }
+
+        .gallery {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .download-box {
+          width: 90%;
+          padding: 25px;
+        }
+
+        .corner-text {
+          font-size: 10px;
+        }
+
+      }
   </style>
 </head>
 <body>
@@ -183,8 +225,6 @@
     <button class="nav-btn" onclick="showSection('gallery')">Галерея</button>
     <button class="nav-btn" onclick="showSection('music')">Музыка</button>
     <button class="nav-btn" onclick="showSection('download')">Скачать шейдеры</button>
-
-
   </aside>
 
   <main class="content">
@@ -258,8 +298,6 @@
         * шейдер для майнкрафт
       </span>
     </section>
-
-
   </main>
 
   <!-- Lightbox -->
@@ -267,7 +305,6 @@
       <img id="lightbox-img">
       <video id="lightbox-video" controls></video>
     </div>
-
 
   <script>
     function showSection(id) {
@@ -319,7 +356,6 @@
       video.src = '';
       lightbox.style.display = 'none';
     }
-
   </script>
 
 </body>
