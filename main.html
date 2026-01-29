@@ -19,7 +19,6 @@
       color: #e5e7eb;
     }
 
-    /* Левая панель */
     .sidebar {
       width: 220px;
       background: #020617;
@@ -43,14 +42,12 @@
       padding: 10px;
       cursor: pointer;
       border-radius: 8px;
-      transition: background 0.2s;
     }
 
     .nav-btn:hover {
       background: #1e293b;
     }
 
-    /* Основной контент */
     .content {
       flex: 1;
       padding: 30px;
@@ -70,7 +67,6 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Галерея */
     .gallery {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -78,17 +74,36 @@
       margin-top: 15px;
     }
 
-    .gallery div {
-      background: #1e293b;
+    .gallery img {
+      width: 100%;
       height: 120px;
+      object-fit: cover;
       border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #94a3b8;
+      cursor: pointer;
+      transition: transform 0.2s;
     }
 
-    /* Музыка */
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+
+    /* LIGHTBOX */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 12px;
+    }
+
     audio {
       margin-top: 15px;
       width: 100%;
@@ -108,7 +123,7 @@
     <section id="about" class="active">
       <h2>О себе</h2>
       <p style="margin-top:10px;">
-        И так обо мне: </br>
+        И так обо мне: <br>
         Меня зовут Кира Йошикаге. 
         Мне 33 года. Мой дом находится в северо-восточной части Морио, в районе поместий. 
         Работаю в офисе сети магазинов Kame Yu и домой возвращаюсь, самое позднее, в восемь вечера. 
@@ -124,56 +139,62 @@
     <section id="gallery">
       <h2>Галерея</h2>
       <div class="gallery">
-        <div>Фото 1</div>
-        <div>Фото 2</div>
-        <div>Фото 3</div>
-        <div>Фото 4</div>
+        <img src="ENDFIELD.png" onclick="openLightbox(this.src)">
+        <img src="Bob.jpg" onclick="openLightbox(this.src)">
+        <img src="photo3.jpg" onclick="openLightbox(this.src)">
+        <img src="photo4.jpg" onclick="openLightbox(this.src)">
       </div>
     </section>
 
     <section id="music">
       <h2>Музыка</h2>
-      <p style="margin-top:10px;">Мои любимые треки:</p>
 
-      <p style="margin-top:10px;">Interworld METAMORPHOSIS</p>
       <audio class="music-player" controls>
-        <source src="METAMORPHOSIS.mp3" type="audio/mpeg">
-        Твой браузер не поддерживает аудио.
+        <source src="METAMORPHOSIS.mp3">
       </audio>
 
-      <p style="margin-top:10px;">DVRST Close Eyes</p>
       <audio class="music-player" controls>
-        <source src="Close Eyes.mp3" type="audio/mpeg">
-        Твой браузер не поддерживает аудио.
+        <source src="Close Eyes.mp3">
       </audio>
 
-
+      <audio class="music-player" controls>
+        <source src="ECLIPSER.mp3">
+      </audio>
     </section>
   </main>
 
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <img id="lightbox-img">
+  </div>
+
   <script>
-      function showSection(id) {
-      document.querySelectorAll('section').forEach(sec => {
-      sec.classList.remove('active');
-          });
+    function showSection(id) {
+      document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
       document.getElementById(id).classList.add('active');
-        }
+    }
 
-
-        const players = document.querySelectorAll('.music-player');
-
-
-          players.forEach(player => {
-          player.addEventListener('play', () => {
-          players.forEach(other => {
-          if (other !== player) {
-          other.pause();
-          other.currentTime = 0;
+    const players = document.querySelectorAll('.music-player');
+    players.forEach(p => {
+      p.addEventListener('play', () => {
+        players.forEach(o => {
+          if (o !== p) {
+            o.pause();
+            o.currentTime = 0;
           }
-          });
-          });
-          });
-          </script>
+        });
+      });
+    });
+
+    function openLightbox(src) {
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('lightbox').style.display = 'flex';
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').style.display = 'none';
+    }
+  </script>
 
 </body>
 </html>
